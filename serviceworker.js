@@ -25,8 +25,11 @@ self.addEventListener('fetch', event => {
       }());
 
       // Prefer the cached response, falling back to the fetch response.
-      //return (await caches.match(normalizedUrl)) || fetchResponseP;
-      return fetchResponseP;
+      return (await caches.match(normalizedUrl)) || fetchResponseP;
+      
+      //*** Tuve un problema, cuando puse la app en HomeScerren y cometí un error con el nombre de un js la app se bloqueo en un estado en blanco
+      // cambié la linea anterior por esta e hice un refresh. Hay que tener cuidado con estos Service Workers
+      //return fetchResponseP;
     }());
   }
 });
