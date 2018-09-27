@@ -1,3 +1,5 @@
+Framework7.use(Framework7Keypad);
+
 var app = new Framework7({
   // App root element
   root: '#app',
