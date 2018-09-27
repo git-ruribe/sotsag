@@ -20,3 +20,9 @@ var app = new Framework7({
 });
 
 var mainView = app.views.create('.view-main');
+
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function() {
+    navigator.serviceWorker.register('/service-worker.js');
+  });
+}
