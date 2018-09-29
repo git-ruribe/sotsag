@@ -71,7 +71,7 @@
           <!-- Top Navbar -->
           <div class="navbar">
             <div class="navbar-inner">
-              <div class="title">Test App v0.07</div>
+              <div class="title">Test App v0.08</div>
             </div>
           </div>
           
@@ -270,12 +270,10 @@
       
        function doSomething(a){
           console.log('Click en ' + a);
-          dynamicPopover.open();
-        }
-      
-      // Create dynamic Popover
+         
+               // Create dynamic Popover
           var dynamicPopover = app.popover.create({
-            targetEl: '#house',
+            targetEl: '#'+a,
             content: '<div class="popover">'+
                         '<div class="popover-inner">'+
                           '<div class="block">'+
@@ -301,6 +299,11 @@
           dynamicPopover.on('closed', function (popover) {
             console.log('Popover closed');
           });
+         
+          dynamicPopover.open();
+        }
+      
+
       
     </script>
   </body>
