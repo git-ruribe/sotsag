@@ -1,1 +1,19 @@
+#money {
+    background-color: YellowGreen;
+    font-size: 28px;
+    text-align: center;
+    padding: 8px;
+}
 
+.navbar { 
+    background: darkgreen !important; 
+    font-size: 24px !important;}
+
+.navbar .title { 
+    font-size: 30px !important;}
+
+.row {
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-top: 8px;
+}
