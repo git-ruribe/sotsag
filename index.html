@@ -96,7 +96,7 @@
                   data-border-width="30"
                   data-border-bg-color="#f44336"
                   data-bgColor="#f44336"
-                  onclick = "window.location = 'https://www.google.com/';"
+                  onclick = "doSomething('casa');"
                 ></div>
               </div>
               <div class="col text-align-center">
@@ -266,5 +266,12 @@
     <script src="libs/framework7.keypad.min.js"></script>
     <!-- Path to your app js-->
     <script type="text/javascript" src="my-app.js?0"></script>
+    <script>
+      
+       function doSomething(a){
+          console.log('Click en ' + a);
+        }
+      
+    </script>
   </body>
 </html>
