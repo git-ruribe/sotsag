@@ -2,7 +2,7 @@
 <html>
   <head>
     <!-- Your app title -->
-    <title>🤔 💰</title>
+    <title>🤔 💸</title>
 
     <meta name="description" content="Simple expenses tracker.">
     <meta charset="utf-8">
@@ -14,7 +14,7 @@
     <!-- Add to homescreen for Safari on iOS -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta name="apple-mobile-web-app-title" content="🤔 💰">
+    <meta name="apple-mobile-web-app-title" content="🤔 💸">
 
     <!-- Path to Framework7 Library CSS -->
     <link rel="stylesheet" href="libs/framework7.min.css">
@@ -55,8 +55,131 @@
   <body>
     <!-- App root element -->
     <div id="app">
-      <!-- Statusbar overlay -->
-      <div class="statusbar"></div>
+    <!-- Statusbar overlay -->
+    <div class="statusbar"></div>
+
+    <!-- Left panel with cover effect-->
+    <div class="panel panel-left panel-cover">
+        <div class="view">
+          <div class="page">
+            <div class="navbar">
+              <div class="navbar-inner">
+                <div class="title">⚙️</div>
+              </div>
+            </div>
+            <div class="page-content">
+              <div class="block">
+                
+                    <div class="list inline-labels no-hairlines-md">
+                    <ul>
+                      <li>
+                        <div class="item-content item-input">
+                          <div class="item-inner">
+                            <div class="item-title item-label">💰🏠❓</div>
+                            <div class="item-input-wrap">
+                              <input id="bhouse" type="number" name="bhouse" onchange="confirmbdgt('house')" >
+                            </div>
+                          </div>
+                        </div>
+                      </li>
+                      <li>
+                          <div class="item-content item-input">
+                            <div class="item-inner">
+                              <div class="item-title item-label">💰🎓❓</div>
+                              <div class="item-input-wrap">
+                                <input id="bschool" type="text" name="bschool" placeholder="0.00">
+                              </div>
+                            </div>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="item-content item-input">
+                            <div class="item-inner">
+                              <div class="item-title item-label">💰🚗❓</div>
+                              <div class="item-input-wrap">
+                                <input id="bcar" type="text" name="bcar" placeholder="0.00">
+                              </div>
+                            </div>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="item-content item-input">
+                            <div class="item-inner">
+                              <div class="item-title item-label">💰😋❓</div>
+                              <div class="item-input-wrap">
+                                <input id="bfood" type="text" name="bfood" placeholder="0.00">
+                              </div>
+                            </div>
+                          </div>
+                        </li>
+                        <li>
+                            <div class="item-content item-input">
+                              <div class="item-inner">
+                                <div class="item-title item-label">💰👕❓</div>
+                                <div class="item-input-wrap">
+                                  <input id="bclothes" type="text" name="bclothes" placeholder="0.00">
+                                </div>
+                              </div>
+                            </div>
+                          </li>
+                          <li>
+                            <div class="item-content item-input">
+                              <div class="item-inner">
+                                <div class="item-title item-label">💰🎉❓</div>
+                                <div class="item-input-wrap">
+                                  <input  id="bparty" type="text" name="bparty" placeholder="0.00">
+                                </div>
+                              </div>
+                            </div>
+                          </li>
+                          <li>
+                              <div class="item-content item-input">
+                                <div class="item-inner">
+                                  <div class="item-title item-label">💰📱❓</div>
+                                  <div class="item-input-wrap">
+                                    <input id="btech" type="text" name="btech" placeholder="0.00">
+                                  </div>
+                                </div>
+                              </div>
+                            </li>
+                            <li>
+                              <div class="item-content item-input">
+                                <div class="item-inner">
+                                  <div class="item-title item-label">💰🎁❓</div>
+                                  <div class="item-input-wrap">
+                                    <input id="bgifts" type="text" name="bgifts" placeholder="0.00">
+                                  </div>
+                                </div>
+                              </div>
+                            </li>
+                            <li>
+                                <div class="item-content item-input">
+                                  <div class="item-inner">
+                                    <div class="item-title item-label">💰️️👩‍⚕️❓</div>
+                                    <div class="item-input-wrap">
+                                      <input id="bdoctor" type="text" name="bdoctor" placeholder="0.00">
+                                    </div>
+                                  </div>
+                                </div>
+                              </li>
+                              <li>
+                                <div class="item-content item-input">
+                                  <div class="item-inner">
+                                    <div class="item-title item-label">💰🤷❓</div>
+                                    <div class="item-input-wrap">
+                                      <input id="bother" type="text" name="bother" placeholder="0.00">
+                                    </div>
+                                  </div>
+                                </div>
+                              </li>
+                    </ul>
+                    </div>
+                  
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
       <!-- Your main view, should have "view-main" class -->
       <div class="view view-main">
@@ -66,8 +189,12 @@
           <!-- Top Navbar -->
           <div class="navbar">
             <div class="navbar-inner">
-              <div class="left">⚙️</div>
-              <div class="title">🤔 💰</div>
+              <div class="left">
+                  <a href="#" class="link panel-open" data-panel="left">
+                      ⚙️
+                  </a>
+              </div>
+              <div class="title">🤔 💸</div>
               <div class="right">📊</div>
             </div>
           </div>
@@ -76,8 +203,8 @@
           <div class="page-content" style="background-color: #e5f1e2;">
 
             <div id="money" >
-                <div id="total" onclick = "doSomething('money');">💲  2️⃣5️⃣,4️⃣4️⃣2⃣</div>
-                <div id="user"></div>
+                <div id="total" onclick = "doSomething('money');">💲</div>
+                <div id="user">.</div>
             </div>    
 
             <div class="row">
@@ -86,11 +213,11 @@
                   id = "house"
                   class="gauge gauge-init"
                   data-type="semicircle"
-                  data-value="0.75"
+                  data-value="0.99"
                   data-value-text="🏠"
                   data-value-font-size="51"
                   data-value-text-color="#e91e63"
-                  data-label-text="$34,532"
+                  data-label-text="$"
                   data-label-text-color="#333"
                   data-border-color="#aaaaaa"
                   data-border-width="30"
@@ -101,18 +228,20 @@
               </div>
               <div class="col text-align-center">
                 <div
+                  id = "school"
                   class="gauge gauge-init"
                   data-type="semicircle"
-                  data-value="0.4"
+                  data-value="0.01"
                   data-value-text="🎓"
                   data-value-font-size="51"
                   data-value-text-color="#e91e63"
                   data-border-color="#e91e63"
-                  data-label-text="$4,520"
+                  data-label-text="$"
                   data-label-text-color="#333"
                   data-border-width="30"
                   data-border-bg-color="#aaaaaa"
                   data-bgColor = "#aaaaaa"
+                  onclick = "doSomething('school');"
                 ></div>
               </div>
             </div>
@@ -120,34 +249,38 @@
             <div class="row">
               <div class="col text-align-center">
                 <div
+                  id = "car"
                   class="gauge gauge-init"
                   data-type="semicircle"
-                  data-value="0.2"
+                  data-value="0.99"
                   data-value-text="🚗"
                   data-value-font-size="51"
                   data-value-text-color="#e91e63"
-                  data-label-text="$34,532"
+                  data-label-text="$"
                   data-label-text-color="#333"
                   data-border-color="#aaaaaa"
                   data-border-width="30"
                   data-border-bg-color="#f44336"
                   data-bgColor="#f44336"
+                  onclick = "doSomething('car');"
                 ></div>
               </div>
               <div class="col text-align-center">
                 <div
+                  id = "food"
                   class="gauge gauge-init"
                   data-type="semicircle"
-                  data-value="0.6"
+                  data-value="0.01"
                   data-value-text="😋"
                   data-value-font-size="51"
                   data-value-text-color="#e91e63"
                   data-border-color="#e91e63"
-                  data-label-text="$4,520"
+                  data-label-text="$"
                   data-label-text-color="#333"
                   data-border-width="30"
                   data-border-bg-color="#aaaaaa"
                   data-bgColor = "#aaaaaa"
+                  onclick = "doSomething('food');"
                 ></div>
               </div>
             </div>
@@ -155,18 +288,20 @@
             <div class="row">
               <div class="col text-align-center">
                 <div
+                  id = "clothes"
                   class="gauge gauge-init"
                   data-type="semicircle"
-                  data-value="0.9"
+                  data-value="0.99"
                   data-value-text="👕"
                   data-value-font-size="51"
                   data-value-text-color="#e91e63"
-                  data-label-text="$34,532"
+                  data-label-text="$"
                   data-label-text-color="#333"
                   data-border-color="#aaaaaa"
                   data-border-width="30"
                   data-border-bg-color="#f44336"
                   data-bgColor="#f44336"
+                  onclick = "doSomething('clothes');"
                 ></div>
               </div>
               <div class="col text-align-center">
@@ -174,12 +309,12 @@
                   id="party"
                   class="gauge gauge-init"
                   data-type="semicircle"
-                  data-value="0.3"
+                  data-value="0.01"
                   data-value-text="🎉"
                   data-value-font-size="51"
                   data-value-text-color="#e91e63"
                   data-border-color="#e91e63"
-                  data-label-text="$4,520"
+                  data-label-text="$"
                   data-label-text-color="#333"
                   data-border-width="30"
                   data-border-bg-color="#aaaaaa"
@@ -192,34 +327,38 @@
             <div class="row">
               <div class="col text-align-center">
                 <div
+                  id = "tech"
                   class="gauge gauge-init"
                   data-type="semicircle"
-                  data-value="0.9"
+                  data-value="0.99"
                   data-value-text="📱"
                   data-value-font-size="51"
                   data-value-text-color="#e91e63"
-                  data-label-text="$34,532"
+                  data-label-text="$"
                   data-label-text-color="#333"
                   data-border-color="#aaaaaa"
                   data-border-width="30"
                   data-border-bg-color="#f44336"
                   data-bgColor="#f44336"
+                  onclick = "doSomething('tech');"
                 ></div>
               </div>
               <div class="col text-align-center">
                 <div
+                  id = "gifts"
                   class="gauge gauge-init"
                   data-type="semicircle"
-                  data-value="0.3"
+                  data-value="0.01"
                   data-value-text="🎁"
                   data-value-font-size="51"
                   data-value-text-color="#e91e63"
                   data-border-color="#e91e63"
-                  data-label-text="$4,520"
+                  data-label-text="$"
                   data-label-text-color="#333"
                   data-border-width="30"
                   data-border-bg-color="#aaaaaa"
                   data-bgColor = "#aaaaaa"
+                  onclick = "doSomething('gifts');"
                 ></div>
               </div>
             </div>
@@ -227,36 +366,38 @@
             <div class="row">
               <div class="col text-align-center">
                 <div
+                  id = "doctor"
                   class="gauge gauge-init"
                   data-type="semicircle"
-                  data-value="0.9"
+                  data-value="0.99"
                   data-value-text="👩‍⚕️"
                   data-value-font-size="51"
                   data-value-text-color="#e91e63"
-                  data-label-text="$34,532"
+                  data-label-text="$"
                   data-label-text-color="#333"
                   data-border-color="#aaaaaa"
                   data-border-width="30"
                   data-border-bg-color="#f44336"
                   data-bgColor="#f44336"
+                  onclick = "doSomething('doctor');"
                 ></div>
               </div>
               <div class="col text-align-center">
                 <div
-                  id = "sabe"
+                  id = "other"
                   class="gauge gauge-init"
                   data-type="semicircle"
-                  data-value="0.3"
+                  data-value="0.01"
                   data-value-text="🤷"
                   data-value-font-size="51"
                   data-value-text-color="#e91e63"
                   data-border-color="#e91e63"
-                  data-label-text="$4,520"
+                  data-label-text="$"
                   data-label-text-color="#333"
                   data-border-width="30"
                   data-border-bg-color="#aaaaaa"
                   data-bgColor = "#aaaaaa"
-                  onclick = "doSomething('sabe');"
+                  onclick = "doSomething('other');"
                 ></div>
               </div>
             </div>
@@ -272,7 +413,7 @@
     <script type="text/javascript" src="libs/pouchdb-7.0.0.min.js"></script>
     
     <!-- Path to your app js-->
-    <script type="text/javascript" src="my-app.js?2"></script>
+    <script type="text/javascript" src="my-app.js?0"></script>
 
   </body>
 </html>

@@ -41,6 +41,9 @@ function guid() {
 
 //Creating the database object
 var db = new PouchDB('my_expenses');
+var usuario = "";
+var cuentas = {};
+var presupuesto = {};
 
 //Reading the contents of a Document
 db.get('user', function(err, doc) {
@@ -56,15 +59,117 @@ db.get('user', function(err, doc) {
         if (err) {
           return console.log(err);
         } else {
-          $$('#user').text(doc.data)
-          console.log(doc.data);
+          usuario = doc.data;
+          $$('#user').text(usuario);
         }
       });
    } else {
-      $$('#user').text(doc.data)
-      console.log(doc.data);
+      usuario = doc.data;
+      $$('#user').text(usuario);
    }
 });
+
+db.get('accounts',function(err, doc) {
+  if(err) {
+    my_accounts = {
+      _id : 'accounts',
+      total : 0,
+      house : 0,
+      school : 0,
+      car : 0,
+      food : 0,
+      clothes : 0,
+      party : 0,
+      tech : 0,
+      gifts : 0,
+      doctor : 0,
+      other :0
+    }
+    db.put(my_accounts, function(err, response) {
+      if (err) {
+        return console.log(err);
+      } else {
+        cuentas = my_accounts;
+        readbudget();
+        populateAcc(cuentas);
+      }
+    });
+  } else {
+      cuentas = doc;
+      readbudget();
+      populateAcc(cuentas);
+  }
+});
+
+$$('.panel-left').on('panel:opened', function () {
+  fillbudget();
+  console.log('Panel left: opened');
+});
+
+function confirmbdgt(cat) {
+  app.dialog.confirm($$('#b'+cat).val(), cat, function(){
+    $$('#b'+cat).val(1000);
+  });
+}
+
+function fillbudget() {
+  budget = presupuesto;
+  $$('#bhouse').val(budget.house);
+  $$('#bschool').val(budget.school);
+  $$('#bcar').val(budget.car);
+  $$('#bfood').val(budget.food);
+  $$('#bclothes').val(budget.clothes);
+  $$('#bparty').val(budget.party);
+  $$('#btech').val(budget.tech);
+  $$('#bgifts').val(budget.gifts);
+  $$('#bdoctor').val(budget.doctor);
+  $$('#bother').val(budget.other);
+  console.log("ppt llenado");
+}
+
+function readbudget() {
+  db.get('budget',function(err, doc) {
+    if(err) {
+      my_budget = {
+        _id : 'budget',
+        total : 0,
+        house : 0,
+        school : 0,
+        car : 0,
+        food : 0,
+        clothes : 0,
+        party : 0,
+        tech : 0,
+        gifts : 0,
+        doctor : 0,
+        other :0
+      }
+      db.put(my_budget, function(err, response) {
+        if (err) {
+          return console.log(err);
+        } else {
+          presupuesto= my_budget;
+        }
+      });
+    } else {
+        presupuesto = doc;
+    }
+  });
+};
+
+function populateAcc(cuentas) {
+  $$('#total').text(toEmoticon(cuentas.total));
+  app.gauge.get('#house').update({labelText:'$'+cuentas.house.toString()});
+  app.gauge.get('#school').update({labelText:'$'+cuentas.school.toString()});
+  app.gauge.get('#car').update({labelText:'$'+cuentas.car.toString()});
+  app.gauge.get('#food').update({labelText:'$'+cuentas.food.toString()});
+  app.gauge.get('#clothes').update({labelText:'$'+cuentas.clothes.toString()});
+  app.gauge.get('#party').update({labelText:'$'+cuentas.party.toString()});
+  app.gauge.get('#tech').update({labelText:'$'+cuentas.tech.toString()});
+  app.gauge.get('#gifts').update({labelText:'$'+cuentas.gifts.toString()});
+  app.gauge.get('#doctor').update({labelText:'$'+cuentas.doctor.toString()});
+  app.gauge.get('#other').update({labelText:'$'+cuentas.other.toString()});
+};
 
 function graba(a){
   if (a=='money') {
