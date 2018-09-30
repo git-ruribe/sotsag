@@ -68,8 +68,9 @@
               </div>
             </div>
             <div class="page-content">
-              <div class="block">
-                
+                <div  class="block-title" style="font-size: 18px; line-height: 26px; margin: 5px 5px 10px;";>🚧 0.1.0</div>
+                  <div class="block">
+                    <div id ="blockppto" class="block-header" style="font-size: 18px; line-height: 26px; margin: 5px 5px 10px;";>💰</div>
                     <div class="list inline-labels no-hairlines-md">
                     <ul>
                       <li>
@@ -87,7 +88,7 @@
                             <div class="item-inner">
                               <div class="item-title item-label">💰🎓❓</div>
                               <div class="item-input-wrap">
-                                <input id="bschool" type="text" name="bschool" placeholder="0.00">
+                                <input id="bschool" type="text" name="bschool" onchange="confirmbdgt('school')">
                               </div>
                             </div>
                           </div>
@@ -97,7 +98,7 @@
                             <div class="item-inner">
                               <div class="item-title item-label">💰🚗❓</div>
                               <div class="item-input-wrap">
-                                <input id="bcar" type="text" name="bcar" placeholder="0.00">
+                                <input id="bcar" type="text" name="bcar" onchange="confirmbdgt('car')">
                               </div>
                             </div>
                           </div>
@@ -107,7 +108,7 @@
                             <div class="item-inner">
                               <div class="item-title item-label">💰😋❓</div>
                               <div class="item-input-wrap">
-                                <input id="bfood" type="text" name="bfood" placeholder="0.00">
+                                <input id="bfood" type="text" name="bfood" onchange="confirmbdgt('food')">
                               </div>
                             </div>
                           </div>
@@ -117,7 +118,7 @@
                               <div class="item-inner">
                                 <div class="item-title item-label">💰👕❓</div>
                                 <div class="item-input-wrap">
-                                  <input id="bclothes" type="text" name="bclothes" placeholder="0.00">
+                                  <input id="bclothes" type="text" name="bclothes" onchange="confirmbdgt('clothes')">
                                 </div>
                               </div>
                             </div>
@@ -127,7 +128,7 @@
                               <div class="item-inner">
                                 <div class="item-title item-label">💰🎉❓</div>
                                 <div class="item-input-wrap">
-                                  <input  id="bparty" type="text" name="bparty" placeholder="0.00">
+                                  <input  id="bparty" type="text" name="bparty" onchange="confirmbdgt('party')">
                                 </div>
                               </div>
                             </div>
@@ -137,7 +138,7 @@
                                 <div class="item-inner">
                                   <div class="item-title item-label">💰📱❓</div>
                                   <div class="item-input-wrap">
-                                    <input id="btech" type="text" name="btech" placeholder="0.00">
+                                    <input id="btech" type="text" name="btech" onchange="confirmbdgt('tech')">
                                   </div>
                                 </div>
                               </div>
@@ -147,7 +148,7 @@
                                 <div class="item-inner">
                                   <div class="item-title item-label">💰🎁❓</div>
                                   <div class="item-input-wrap">
-                                    <input id="bgifts" type="text" name="bgifts" placeholder="0.00">
+                                    <input id="bgifts" type="text" name="bgifts" onchange="confirmbdgt('gifts')">
                                   </div>
                                 </div>
                               </div>
@@ -157,7 +158,7 @@
                                   <div class="item-inner">
                                     <div class="item-title item-label">💰️️👩‍⚕️❓</div>
                                     <div class="item-input-wrap">
-                                      <input id="bdoctor" type="text" name="bdoctor" placeholder="0.00">
+                                      <input id="bdoctor" type="text" name="bdoctor" onchange="confirmbdgt('doctor')">
                                     </div>
                                   </div>
                                 </div>
@@ -167,15 +168,24 @@
                                   <div class="item-inner">
                                     <div class="item-title item-label">💰🤷❓</div>
                                     <div class="item-input-wrap">
-                                      <input id="bother" type="text" name="bother" placeholder="0.00">
+                                      <input id="bother" type="text" name="bother" onchange="confirmbdgt('other')">
                                     </div>
                                   </div>
                                 </div>
                               </li>
                     </ul>
-                    </div>
-                  
+                  </div>
               </div>
+              <div class="block">
+                  <div id="blockexp" class="block-header" style="font-size: 18px; line-height: 26px; margin: 5px 5px 10px;";>💸</div>
+                  <div class="list inline-labels no-hairlines-md">
+                    <ul>
+                      <li>
+                          <button class="col button button-big" onclick="eraseAccts()">💸  ↘️    🕳️</button>
+                      </li>
+                    </ul>
+                  </div>  
+                </div>
             </div>
           </div>
         </div>
@@ -213,16 +223,15 @@
                   id = "house"
                   class="gauge gauge-init"
                   data-type="semicircle"
-                  data-value="0.2"
+                  data-value="0.8"
                   data-value-text="🏠"
                   data-value-font-size="51"
-                  data-value-text-color="#e91e63"
+                  data-value-text-color="#000000"
                   data-label-text="$"
-                  data-label-text-color="#333"
+                  data-label-text-color="#000000"
                   data-border-color="#aaaaaa"
                   data-border-width="30"
-                  data-border-bg-color="#f44336"
-                  data-bgColor="#f44336"
+                  data-border-bg-color="#418c00"
                   onclick = "doSomething('house');"
                 ></div>
               </div>
@@ -413,7 +422,7 @@
     <script type="text/javascript" src="libs/pouchdb-7.0.0.min.js"></script>
     
     <!-- Path to your app js-->
-    <script type="text/javascript" src="my-app.js?0"></script>
+    <script type="text/javascript" src="my-app.js?2"></script>
 
   </body>
 </html>

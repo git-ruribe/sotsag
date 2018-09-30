@@ -90,25 +90,125 @@ db.get('accounts',function(err, doc) {
         return console.log(err);
       } else {
         cuentas = my_accounts;
-        readbudget();
-        populateAcc(cuentas);
+        db.get('budget',function(err, doc) {
+          if(err) {
+            my_budget = {
+              _id : 'budget',
+              total : 0,
+              house : 0,
+              school : 0,
+              car : 0,
+              food : 0,
+              clothes : 0,
+              party : 0,
+              tech : 0,
+              gifts : 0,
+              doctor : 0,
+              other :0
+            }
+            db.put(my_budget, function(err, response) {
+              if (err) {
+                return console.log(err);
+              } else {
+                presupuesto= my_budget;
+              }
+            });
+          } else {
+              presupuesto = doc;
+              populateAcc();
+          }
+        });
       }
     });
   } else {
       cuentas = doc;
-      readbudget();
-      populateAcc(cuentas);
+      db.get('budget',function(err, doc) {
+        if(err) {
+          my_budget = {
+            _id : 'budget',
+            total : 0,
+            house : 0,
+            school : 0,
+            car : 0,
+            food : 0,
+            clothes : 0,
+            party : 0,
+            tech : 0,
+            gifts : 0,
+            doctor : 0,
+            other :0
+          }
+          db.put(my_budget, function(err, response) {
+            if (err) {
+              return console.log(err);
+            } else {
+              presupuesto= my_budget;
+              populateAcc();
+            }
+          });
+        } else {
+            presupuesto = doc;
+            populateAcc();
+        }
+      });
+      
   }
 });
+
 
 $$('.panel-left').on('panel:opened', function () {
   fillbudget();
   console.log('Panel left: opened');
 });
 
+function cattoemoji(cat) {
+  switch(cat) {
+    case "house":
+    emotics = "🏠";
+    break;
+    case "school":
+    emotics = "🎓";
+    break;
+    case "car":
+    emotics = "🚗";
+    break;
+    case "food":
+    emotics = "😋";
+    break;
+    case "clothes":
+    emotics = "👕";
+    break;
+    case "party":
+    emotics = "🎉";
+    break;
+    case "tech":
+    emotics = "📱";
+    break;
+    case "gifts":
+    emotics = "🎁";
+    break;
+    case "doctor":
+    emotics = "👩‍⚕️";
+    break;
+    case "other":
+    emotics = "🤷";
+    break;
+  }
+  return emotics;
+}
+
 function confirmbdgt(cat) {
-  app.dialog.confirm($$('#b'+cat).val(), cat, function(){
-    $$('#b'+cat).val(1000);
+  app.dialog.confirm( "💲 " + Number($$('#b'+cat).val()),"💰 " + cattoemoji(cat),  function(){
+    doc=presupuesto;
+    doc._id='budget';
+    doc[cat] = Number($$('#b'+cat).val());
+    presupuesto[cat] = doc[cat];
+    db.put(doc);
+    readbudget();
+    populateAcc();
+  }, function(){
+    console.log("Regresar valor anterior")
+    $$('#b'+cat).val(presupuesto[cat])
   });
 }
 
@@ -124,6 +224,9 @@ function fillbudget() {
   $$('#bgifts').val(budget.gifts);
   $$('#bdoctor').val(budget.doctor);
   $$('#bother').val(budget.other);
+  totalbdgt = budget.house+budget.school+budget.car+budget.food+budget.clothes+budget.party+budget.tech+budget.gifts+budget.doctor+budget.other;
+  $$('#blockppto').text(toEmoticon(totalbdgt)+ " 💰");
+  $$('#blockexp').text(toEmoticon(cuentas.total)+ " 💸");
   console.log("ppt llenado");
 }
 
@@ -153,22 +256,23 @@ function readbudget() {
       });
     } else {
         presupuesto = doc;
+        fillbudget();
     }
   });
 };
 
-function populateAcc(cuentas) {
+function populateAcc() {
   $$('#total').text(toEmoticon(cuentas.total));
-  app.gauge.get('#house').update({labelText:'$'+cuentas.house.toString()});
-  app.gauge.get('#school').update({labelText:'$'+cuentas.school.toString()});
-  app.gauge.get('#car').update({labelText:'$'+cuentas.car.toString()});
-  app.gauge.get('#food').update({labelText:'$'+cuentas.food.toString()});
-  app.gauge.get('#clothes').update({labelText:'$'+cuentas.clothes.toString()});
-  app.gauge.get('#party').update({labelText:'$'+cuentas.party.toString()});
-  app.gauge.get('#tech').update({labelText:'$'+cuentas.tech.toString()});
-  app.gauge.get('#gifts').update({labelText:'$'+cuentas.gifts.toString()});
-  app.gauge.get('#doctor').update({labelText:'$'+cuentas.doctor.toString()});
-  app.gauge.get('#other').update({labelText:'$'+cuentas.other.toString()});
+  app.gauge.get('#house').update({labelText: '$ '+cuentas.house.toString() +'/ $ '+presupuesto.house.toString()});
+  app.gauge.get('#school').update({labelText: '$ '+cuentas.school.toString() +'/ $ '+presupuesto.school.toString()});
+  app.gauge.get('#car').update({labelText: '$ '+cuentas.car.toString() +'/ $ '+presupuesto.car.toString()});
+  app.gauge.get('#food').update({labelText: '$ '+cuentas.food.toString() +'/ $ '+presupuesto.food.toString()});
+  app.gauge.get('#clothes').update({labelText: '$ '+cuentas.clothes.toString() +'/ $ '+presupuesto.clothes.toString()});
+  app.gauge.get('#party').update({labelText: '$ '+cuentas.party.toString() +'/ $ '+presupuesto.party.toString()});
+  app.gauge.get('#tech').update({labelText: '$ '+cuentas.tech.toString() +'/ $ '+presupuesto.tech.toString()});
+  app.gauge.get('#gifts').update({labelText: '$ '+cuentas.gifts.toString() +'/ $ '+presupuesto.gifts.toString()});
+  app.gauge.get('#doctor').update({labelText: '$ '+cuentas.doctor.toString() +'/ $ '+presupuesto.doctor.toString()});
+  app.gauge.get('#other').update({labelText: '$ '+cuentas.other.toString() +'/ $ '+presupuesto.other.toString()});
 };
 
 function graba(a){
@@ -176,6 +280,20 @@ function graba(a){
   var lana = toEmoticon($$('#lana').val());
   console.log($$('#pop'));
   $$('#total').text(lana);
+  } else {
+    doc = cuentas;
+    doc[a] = doc[a] + Number($$('#lana').val());
+    doc.total = doc.total + Number($$('#lana').val());
+    db.put(doc);
+
+    db.get('accounts',function(err, doc) {
+      if(err) {
+        console.log("Error al grabar movimiento");
+       } else {
+            cuentas = doc;
+       }
+      });
+    populateAcc();
   }
 }
 
@@ -297,4 +415,41 @@ function doSomething(a){
  
   dynamicPopover.open();
   document.querySelector("#today").valueAsDate = new Date();
+}
+
+function eraseAccts() {
+
+  app.dialog.confirm( "💸  ↘️    🕳️", "⚠️ ⚠️ ⚠️" ,  function(){
+    my_accounts = {
+      _id : 'accounts',
+      total : 0,
+      house : 0,
+      school : 0,
+      car : 0,
+      food : 0,
+      clothes : 0,
+      party : 0,
+      tech : 0,
+      gifts : 0,
+      doctor : 0,
+      other :0
+    };
+    my_accounts._rev = cuentas._rev;
+    db.put(my_accounts);
+    db.get('accounts',function(err, doc) {
+      if(err) {
+        console.log("Error al grabar movimiento");
+       } else {
+            cuentas = doc;
+            populateAcc();
+            fillbudget();
+       }
+      });
+  }, function(){
+    console.log("NO borrar")
+  });
+
+  
+  
+
 }
