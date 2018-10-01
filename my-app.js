@@ -115,6 +115,7 @@ db.get('accounts',function(err, doc) {
                 return console.log(err);
               } else {
                 presupuesto= my_budget;
+                populateAcc();
               }
             });
           } else {
