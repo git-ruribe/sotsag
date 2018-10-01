@@ -92,7 +92,13 @@ db.get('accounts',function(err, doc) {
       if (err) {
         return console.log(err);
       } else {
-        cuentas = my_accounts;
+        db.get('accounts',function(err, doc) {
+          if(err) {
+            console.log("Error al grabar movimiento");
+           } else {
+                cuentas = doc;
+           }
+          });
         db.get('budget',function(err, doc) {
           if(err) {
             my_budget = {
@@ -113,7 +119,7 @@ db.get('accounts',function(err, doc) {
               if (err) {
                 return console.log(err);
               } else {
-                presupuesto= my_budget;
+                readbudget();
                 populateAcc();
               }
             });
@@ -146,7 +152,7 @@ db.get('accounts',function(err, doc) {
             if (err) {
               return console.log(err);
             } else {
-              presupuesto= my_budget;
+              readbudget();
               populateAcc();
             }
           });
