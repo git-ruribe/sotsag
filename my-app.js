@@ -66,8 +66,7 @@ db.get('user', function(err, doc) {
       });
    } else {
       usuario = doc;
-      //$$('#user').text(usuario);
-      $$('#user').text('📝 352');
+      $$('#user').text(usuario);
    }
 });
 */
@@ -323,9 +322,9 @@ function graba(a){
         console.log("Error al grabar movimiento");
        } else {
             cuentas = doc;
+            populateAcc();
        }
       });
-    populateAcc();
   }
 }
 
