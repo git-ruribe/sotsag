@@ -249,7 +249,7 @@ function calcpct(cat) {
 
 function populateAcc() {
   $$('#total').text(toEmoticon(cuentas.total));
-  $$('#cuantas').text(cuentas.cuantas);
+  $$('#cuantas').text("📝 : " +cuentas.cuantas);
   calcpct('house');
   calcpct('school');
   calcpct('car');
@@ -280,6 +280,14 @@ function graba(a){
        } else {
             cuentas = doc;
             populateAcc();
+
+            mov = {};
+            mov._id = "mov_" + Number(cuentas.cuantas);
+            mov.timestamp = $$('#today').val();
+            mov.description = $$('#memo').val();
+            mov.amount = $$('#lana').val();
+            mov.category = a;
+            db.put(mov);
        }
       });
   }
@@ -367,7 +375,7 @@ function doSomething(a){
                           '<li class="item-content item-input">'+
                             '<div class="item-inner">'+
                               '<div class="item-input-wrap">'+
-                                '<input type="text" placeholder="📝">'+
+                                '<input id="memo" type="text" placeholder="📝">'+
                               '</div>'+
                             '</div>'+
                           '</li>'+
