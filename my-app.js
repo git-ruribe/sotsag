@@ -236,6 +236,9 @@ function calcpct(cat) {
     } else {
       pct.color = "Green";
       pct.back = "#aaaaaa";
+      if (cuentax == 0) {
+        pct.back = "Green";
+      }
     }
   } else {
     if (cuentax <=0 ) {
