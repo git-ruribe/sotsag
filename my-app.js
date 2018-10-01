@@ -45,6 +45,7 @@ var usuario = "";
 var cuentas = {};
 var presupuesto = {};
 
+/*
 //Reading the contents of a Document
 db.get('user', function(err, doc) {
    if (err) {
@@ -64,16 +65,19 @@ db.get('user', function(err, doc) {
         }
       });
    } else {
-      usuario = doc.data;
-      $$('#user').text(usuario);
+      usuario = doc;
+      //$$('#user').text(usuario);
+      $$('#user').text('📝 352');
    }
 });
+*/
 
 db.get('accounts',function(err, doc) {
   if(err) {
     my_accounts = {
       _id : 'accounts',
       total : 0,
+      cuantas : 0,
       house : 0,
       school : 0,
       car : 0,
@@ -261,18 +265,44 @@ function readbudget() {
   });
 };
 
+function calcpct(cat) {
+  cuentax = cuentas[cat];
+  presupuestox = presupuesto[cat]; 
+  pct = {};
+  pct.color = "Red";
+  pct.back = "Red";
+  pct.value = 0;
+  if (presupuestox > 0) {
+    pct.value = cuentax / presupuestox;
+    if (pct.value>1) {
+      pct.value = 1;
+    } else {
+      pct.color = "Green";
+      pct.back = "#aaaaaa";
+    }
+  } else {
+    if (cuentax <=0 ) {
+      pct.color = "Green";
+      pct.back = "#aaaaaa";
+    }
+  }
+  app.gauge.get('#'+cat).update({value:pct.value, borderColor:pct.color, borderBgColor:pct.back, labelText: '$ '+cuentax.toString() +'/ $ '+presupuestox.toString() });
+
+}
+
 function populateAcc() {
   $$('#total').text(toEmoticon(cuentas.total));
-  app.gauge.get('#house').update({labelText: '$ '+cuentas.house.toString() +'/ $ '+presupuesto.house.toString()});
-  app.gauge.get('#school').update({labelText: '$ '+cuentas.school.toString() +'/ $ '+presupuesto.school.toString()});
-  app.gauge.get('#car').update({labelText: '$ '+cuentas.car.toString() +'/ $ '+presupuesto.car.toString()});
-  app.gauge.get('#food').update({labelText: '$ '+cuentas.food.toString() +'/ $ '+presupuesto.food.toString()});
-  app.gauge.get('#clothes').update({labelText: '$ '+cuentas.clothes.toString() +'/ $ '+presupuesto.clothes.toString()});
-  app.gauge.get('#party').update({labelText: '$ '+cuentas.party.toString() +'/ $ '+presupuesto.party.toString()});
-  app.gauge.get('#tech').update({labelText: '$ '+cuentas.tech.toString() +'/ $ '+presupuesto.tech.toString()});
-  app.gauge.get('#gifts').update({labelText: '$ '+cuentas.gifts.toString() +'/ $ '+presupuesto.gifts.toString()});
-  app.gauge.get('#doctor').update({labelText: '$ '+cuentas.doctor.toString() +'/ $ '+presupuesto.doctor.toString()});
-  app.gauge.get('#other').update({labelText: '$ '+cuentas.other.toString() +'/ $ '+presupuesto.other.toString()});
+  $$('#cuantas').text(cuentas.cuantas);
+  calcpct('house');
+  calcpct('school');
+  calcpct('car');
+  calcpct('food');
+  calcpct('clothes');
+  calcpct('party');
+  calcpct('tech');
+  calcpct('gifts');
+  calcpct('doctor');
+  calcpct('other');
 };
 
 function graba(a){
@@ -284,6 +314,7 @@ function graba(a){
     doc = cuentas;
     doc[a] = doc[a] + Number($$('#lana').val());
     doc.total = doc.total + Number($$('#lana').val());
+    doc.cuantas = doc.cuantas + 1;
     db.put(doc);
 
     db.get('accounts',function(err, doc) {
@@ -419,7 +450,7 @@ function doSomething(a){
 
 function eraseAccts() {
 
-  app.dialog.confirm( "💸  ↘️    🕳️", "⚠️ ⚠️ ⚠️" ,  function(){
+  app.dialog.confirm( "💸  ↘️    🗄️", "⚠️ ⚠️ ⚠️" ,  function(){
     my_accounts = {
       _id : 'accounts',
       total : 0,
