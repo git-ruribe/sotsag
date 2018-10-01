@@ -99,69 +99,12 @@ db.get('accounts',function(err, doc) {
                 cuentas = doc;
            }
           });
-        db.get('budget',function(err, doc) {
-          if(err) {
-            my_budget = {
-              _id : 'budget',
-              total : 0,
-              house : 0,
-              school : 0,
-              car : 0,
-              food : 0,
-              clothes : 0,
-              party : 0,
-              tech : 0,
-              gifts : 0,
-              doctor : 0,
-              other :0
-            }
-            db.put(my_budget, function(err, response) {
-              if (err) {
-                return console.log(err);
-              } else {
-                readbudget();
-                populateAcc();
-              }
-            });
-          } else {
-              presupuesto = doc;
-              populateAcc();
-          }
-        });
+          readbudget()
       }
     });
   } else {
       cuentas = doc;
-      db.get('budget',function(err, doc) {
-        if(err) {
-          my_budget = {
-            _id : 'budget',
-            total : 0,
-            house : 0,
-            school : 0,
-            car : 0,
-            food : 0,
-            clothes : 0,
-            party : 0,
-            tech : 0,
-            gifts : 0,
-            doctor : 0,
-            other :0
-          }
-          db.put(my_budget, function(err, response) {
-            if (err) {
-              return console.log(err);
-            } else {
-              readbudget();
-              populateAcc();
-            }
-          });
-        } else {
-            presupuesto = doc;
-            populateAcc();
-        }
-      });
-      
+      readbudget();
   }
 });
 
@@ -215,7 +158,6 @@ function confirmbdgt(cat) {
     presupuesto[cat] = doc[cat];
     db.put(doc);
     readbudget();
-    populateAcc();
   }, function(){
     console.log("Regresar valor anterior")
     $$('#b'+cat).val(presupuesto[cat])
@@ -261,11 +203,20 @@ function readbudget() {
         if (err) {
           return console.log(err);
         } else {
-          presupuesto= my_budget;
+          db.get('budget',function(err, doc) {
+            if(err) {
+              console.log("Error al grabar movimiento");
+             } else {
+                  presupuesto = doc;
+                  populateAcc();
+                  fillbudget();
+             }
+            });
         }
       });
     } else {
         presupuesto = doc;
+        populateAcc();
         fillbudget();
     }
   });
