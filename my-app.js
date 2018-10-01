@@ -375,7 +375,7 @@ function doSomething(a){
                           '<li class="item-content item-input">'+
                             '<div class="item-inner">'+
                               '<div class="item-input-wrap">'+
-                                '<input id="memo" type="text" placeholder="📝">'+
+                                '<input id="memo" type="text" placeholder="🔤">'+
                               '</div>'+
                             '</div>'+
                           '</li>'+
