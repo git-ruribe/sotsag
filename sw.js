@@ -59,7 +59,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "js/transfer.js",
-    "revision": "2fd3e062fd24dc540bc0b23fe805e385"
+    "revision": "dc72112dbf068cb25e68bd2c55c4040a"
   },
   {
     "url": "libs/framework7.css",
