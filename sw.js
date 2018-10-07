@@ -7,7 +7,7 @@ if (workbox) {
 
   workbox.googleAnalytics.initialize({
     parameterOverrides: {
-      cd1: 'offline',
+      dimension1: 'offline',
     },
   });
 
@@ -46,7 +46,7 @@ if (workbox) {
   },
   {
     "url": "index.html",
-    "revision": "98d5f7fc201b9efdd744a9f146f11710"
+    "revision": "74bad1fa3872ae42db4f4bfe27bf1f3d"
   },
   {
     "url": "js/detail.js",
@@ -86,7 +86,7 @@ if (workbox) {
   },
   {
     "url": "sw_source.js",
-    "revision": "1f23aab21e94ef078f1fbeec0497d9f0"
+    "revision": "1af2d48b19453d06e78233c4f014a96b"
   },
   {
     "url": "transfer.html",

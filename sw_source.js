@@ -7,7 +7,7 @@ if (workbox) {
 
   workbox.googleAnalytics.initialize({
     parameterOverrides: {
-      cd1: 'offline',
+      dimension1: 'offline',
     },
   });
 
