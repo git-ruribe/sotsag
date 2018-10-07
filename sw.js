@@ -1,17 +1,16 @@
 console.log('Hello from sw.js v0.1.1');
 
-importScripts('https://storage.googleapis.com/workbox-cdn/releases/3.6.1/workbox-sw.js');
+importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.2/workbox-sw.js");
 
 if (workbox) {
   console.log(`Yay! Workbox is loaded 🎉`);
 
-  workbox.googleAnalytics.initialize({
-    parameterOverrides: {
-      dimension1: 'offline',
-    },
-  });
+} else {
+  console.log(`Boo! Workbox didn't load 😬`);
+}
 
-  workbox.precaching.precacheAndRoute([
+workbox.precaching.suppressWarnings();  
+workbox.precaching.precacheAndRoute([
   {
     "url": "detail.html",
     "revision": "5d1af1d82eae4a949513929cb1165639"
@@ -46,7 +45,7 @@ if (workbox) {
   },
   {
     "url": "index.html",
-    "revision": "74bad1fa3872ae42db4f4bfe27bf1f3d"
+    "revision": "5748a4611c6e88d7cb740e6ff8bb4c6f"
   },
   {
     "url": "js/detail.js",
@@ -54,7 +53,7 @@ if (workbox) {
   },
   {
     "url": "js/my-app.js",
-    "revision": "0bc23b53ea66678dc1b177fecbad6017"
+    "revision": "a8efe7fe6a2b8fbb986699bd90a479b0"
   },
   {
     "url": "js/routes.js",
@@ -86,7 +85,7 @@ if (workbox) {
   },
   {
     "url": "sw_source.js",
-    "revision": "1af2d48b19453d06e78233c4f014a96b"
+    "revision": "a826737f3af1f01aa8307c5ab94021eb"
   },
   {
     "url": "transfer.html",
@@ -98,7 +97,9 @@ if (workbox) {
   }
 ]);
 
-} else {
-  console.log(`Boo! Workbox didn't load 😬`);
-}
+workbox.googleAnalytics.initialize({
+  parameterOverrides: {
+    cd1: 'offline',
+  },
+});
 
