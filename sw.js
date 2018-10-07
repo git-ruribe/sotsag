@@ -43,7 +43,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "index.html",
-    "revision": "eaf55742159dac49ef6698a5bff8aa5d"
+    "revision": "6ba6d383ed8bfe79acc5be18ac1f41d7"
   },
   {
     "url": "js/detail.js",
@@ -51,7 +51,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "js/my-app.js",
-    "revision": "8599a509e8891b2312e6f5c241133dd7"
+    "revision": "0bc23b53ea66678dc1b177fecbad6017"
   },
   {
     "url": "js/routes.js",
@@ -80,14 +80,6 @@ workbox.precaching.precacheAndRoute([
   {
     "url": "my-app.css",
     "revision": "c812747f9d841a840e7c3c06e7d67af4"
-  },
-  {
-    "url": "my-app.js",
-    "revision": "61db15241e4c69e833e85893fa856704"
-  },
-  {
-    "url": "serviceworker.js",
-    "revision": "cd74988d833feaa20d9ce0c8c0b09c85"
   },
   {
     "url": "sw_source.js",
