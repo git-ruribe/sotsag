@@ -4,11 +4,14 @@ importScripts('https://storage.googleapis.com/workbox-cdn/releases/3.6.1/workbox
 
 if (workbox) {
   console.log(`Yay! Workbox is loaded 🎉`);
-} else {
-  console.log(`Boo! Workbox didn't load 😬`);
-}
 
-workbox.precaching.precacheAndRoute([
+  workbox.googleAnalytics.initialize({
+    parameterOverrides: {
+      cd1: 'offline',
+    },
+  });
+
+  workbox.precaching.precacheAndRoute([
   {
     "url": "detail.html",
     "revision": "5d1af1d82eae4a949513929cb1165639"
@@ -43,7 +46,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "index.html",
-    "revision": "6ba6d383ed8bfe79acc5be18ac1f41d7"
+    "revision": "9406c933a32a6fdaf66538381d0c976e"
   },
   {
     "url": "js/detail.js",
@@ -83,7 +86,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "sw_source.js",
-    "revision": "329385c16f9455a450a80f42231cec13"
+    "revision": "1f23aab21e94ef078f1fbeec0497d9f0"
   },
   {
     "url": "transfer.html",
@@ -93,4 +96,9 @@ workbox.precaching.precacheAndRoute([
     "url": "workbox-config.js",
     "revision": "721e18bea15aca290c446ca4c5b7bcb8"
   }
-])
+]);
+
+} else {
+  console.log(`Boo! Workbox didn't load 😬`);
+}
+
